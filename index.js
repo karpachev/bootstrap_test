@@ -1,8 +1,14 @@
 var express = require('express'),
 	reload = require('reload'),
-	http = require('http');
+	http = require('http'),
+	jade = require('jade');
 var app = express();
 
+app.get('/',function(request,response){
+	var fn = jade.compileFile('html/index.jade', {});
+
+	response.send(fn({user:"Vasil"}));
+});
 app.use(express.static('html'));
 app.set('port', 80)
 
